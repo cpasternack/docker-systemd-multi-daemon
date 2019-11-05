@@ -1,0 +1,12 @@
+## Path           : System/Management
+## Description    : Extra cli switches for docker daemon
+## Type           : string
+## Default        : ""
+## ServiceRestart : docker
+
+# /etc/sysconfig/docker-%i
+# uncomment below for tls, and replace ${HOST_BRIDGE_IP}
+#DOCKER_OPTS="--tlsverify --tlscacert=/etc/pki/trust/anchors/%i.ca.pem --tlscert=/etc/docker/certs/%i.cert.pem --tlskey=/etc/docker/certs/%i.key.pem -H tcp://${HOST_BRIDGE_IP}:2376 "
+
+# unprotected 
+DOCKER_OPTS="-H tcp://0.0.0.0:2375 " 
