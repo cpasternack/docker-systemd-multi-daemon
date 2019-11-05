@@ -1,0 +1,41 @@
+[Unit]
+Description=Docker Application Container Engine on %i
+Documentation=http://docs.docker.com
+After=network.target # firewall, lvm, ...etc.
+# Wants=containerd.service ...
+# Requires=registry.service ...
+
+[Service]
+EnvironmentFile=/etc/sysconfig/docker-%i
+
+# the below options can all be specified in daemon-%i.json, but
+# you would have to know the interface and edit the file before
+# attempting to start the service
+Type=notify
+ExecStart=/usr/bin/dockerd --add-runtime oci=/usr/sbin/docker-runc \
+  --bridge=%i \
+  --config-file=/etc/docker/daemon-%i.json \
+  --exec-root=/var/run/docker-%i \
+  --data-root=/var/lib/docker-%i \
+  --host unix:///var/run/docker-%i.sock \
+  --pidfile=/var/run/docker-%i.pid \
+  --iptables=true \
+  $DOCKER_NETWORK_OPTIONS $DOCKER_OPTS
+ExecReload=/bin/kill -s HUP $MAINPID
+
+LimitNOFILE=1048576
+LimitNPROC=infinity
+LimitCORE=infinity
+
+# systemd >= v226
+TasksMax=infinity
+Delegate=yes
+KillMode=process
+
+# change to suit your needs
+Restart=on-failure
+StartLimitBurst=3
+StartLimitInterval=60s
+
+[Install]
+WantedBy=multi-user.target
