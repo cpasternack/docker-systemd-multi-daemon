@@ -2,6 +2,7 @@
 Description=Docker Application Container Engine on %i
 Documentation=http://docs.docker.com
 After=network.target # firewall, lvm, ...etc.
+# ammend as necessary
 # Wants=containerd.service ...
 # Requires=registry.service ...
 
@@ -23,12 +24,7 @@ ExecStart=/usr/bin/dockerd --add-runtime oci=/usr/sbin/docker-runc \
   $DOCKER_NETWORK_OPTIONS $DOCKER_OPTS
 ExecReload=/bin/kill -s HUP $MAINPID
 
-LimitNOFILE=1048576
-LimitNPROC=infinity
-LimitCORE=infinity
-
 # systemd >= v226
-TasksMax=infinity
 Delegate=yes
 KillMode=process
 
