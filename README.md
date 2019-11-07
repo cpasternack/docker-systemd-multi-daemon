@@ -9,13 +9,13 @@
  - A: Yes! It's "experimental" in the eyes of docker, however.
 
  - Q: Can you run multiple docker daemons listening on different network interfaces?
- - A: Yes! This is exactly why tried to make this work! This is the functionality that I want from traditional Solaris zones in linux containers.
+ - A: Yes! This is exactly why I tried to make this work! This is more towards the functionality that I want from traditional Solaris zones in linux containers.
  
  - Q: Do you have to use different users to do this?
  - A: No! You can create a service for each (virtual/physical) network interface.
 
  - Q: Who is asking these questions?
- - A: Me, at first.
+ - A: Me, at first. If you are reading this, you too are probably asking this question.
 
  - Q: What works?
  - A:
@@ -26,9 +26,9 @@
 
  - Q: What doesn't work?
  - A:
-    1) Managing the additional docker daemon's via tcp remotely, without explicit iptables forwarding, if you are using a virtual bridge
-    2) Specifying a single daemon.json, /etc/sysconfig/docker file with variables
-    3) I have not tested ipv6, so assume ip6tables doesn't work yet
+    1) Managing the additional docker daemon's via tcp remotely, without explicit iptables forwarding, if you are using a virtual bridge for the host interface.
+    2) Specifying a single daemon.json, /etc/sysconfig/docker file with variables.
+    3) I have not tested ipv6, so assume ip6tables doesn't work yet.
     4) Adding addtional networks. I haven't tested that either.
 
 ## The problem
