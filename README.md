@@ -30,6 +30,7 @@
     2) Specifying a single daemon.json, /etc/sysconfig/docker file with variables.
     3) I have not tested ipv6, so assume ip6tables doesn't work yet.
     4) Adding addtional networks. I haven't tested that either.
+    5) Routing ipv6
 
 ## The problem
 
@@ -84,6 +85,8 @@ Not everything can be cloud-y and distributed. This is the solution.
 
 Fork away! I am not too invested in maintaining or updating this beyond my use cases. I am providing configuration file stubs so you can work with something useful.
 RancherOS are doing some good work with docker-in-docker, and running multi-daemons, so I expect that project to have a more complete view.
+
+Hopefully docker do implement this as a supported solution in the future.
 
 ## License
 
