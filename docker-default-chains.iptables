@@ -1,0 +1,22 @@
+Chain FORWARD (policy DROP)         
+DOCKER-USER  all  --  anywhere             anywhere            
+DOCKER-ISOLATION-STAGE-1  all  --  anywhere             anywhere  
+
+Chain DOCKER (1 references)
+target     prot opt source               destination         
+ACCEPT     tcp  --  anywhere             172.17.0.2           tcp dpt:cslistener
+ACCEPT     tcp  --  anywhere             172.17.0.2           tcp dpt:irdmi
+
+Chain DOCKER-ISOLATION-STAGE-1 (1 references)
+target     prot opt source               destination         
+DOCKER-ISOLATION-STAGE-2  all  --  anywhere             anywhere            
+RETURN     all  --  anywhere             anywhere            
+
+Chain DOCKER-ISOLATION-STAGE-2 (1 references)
+target     prot opt source               destination         
+DROP       all  --  anywhere             anywhere            
+RETURN     all  --  anywhere             anywhere            
+
+Chain DOCKER-USER (1 references)
+target     prot opt source               destination         
+RETURN     all  --  anywhere             anywhere            
